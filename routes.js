@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import {
   Image, StyleSheet, ScrollView, SafeAreaView, Platform,
 } from 'react-native';
+import { createAppContainer } from 'react-navigation';
 import {
   createDrawerNavigator,
   DrawerItems,
-} from 'react-navigation';
+} from 'react-navigation-drawer';
+
+import { Block, Icon, Text } from 'galio-framework';
 
 // screens
 import Article from './src/screens/Article';
@@ -23,7 +26,6 @@ import Registerv2 from './src/screens/Registerv2';
 import Grid from './src/screens/Grid';
 
 import theme from './src/theme';
-import { Block, Icon, Text } from 'galio-framework';
 
 const GalioDrawer = props => (
   <SafeAreaView style={styles.drawer} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -83,7 +85,31 @@ MenuIcon.propTypes = {
   focused: PropTypes.bool,
 };
 
-const screens = {
+const options = {
+  contentComponent: props => <GalioDrawer {...props} />,
+  contentOptions: {
+    labelStyle: {
+      fontWeight: '500',
+      color: theme.COLORS.GREY,
+      fontSize: theme.SIZES.FONT * 0.875,
+      marginLeft: theme.SIZES.BASE * 0.75,
+    },
+    activeLabelStyle: {
+      color: theme.COLORS.WHITE,
+    },
+    activeBackgroundColor: theme.COLORS.THEME,
+    itemsContainerStyle: {
+      paddingVertical: 0,
+    },
+    iconContainerStyle: {
+      marginHorizontal: 0,
+      marginLeft: theme.SIZES.BASE * 1.65,
+      // marginRight: theme.SIZES.BASE * 0.76,
+    },
+  },
+};
+
+const screens = createDrawerNavigator({
   Home: {
     screen: Components,
     navigationOptions: {
@@ -172,32 +198,8 @@ const screens = {
     },
   },
   */
-};
+}, options);
 
-const options = {
-  contentComponent: props => <GalioDrawer {...props} />,
-  contentOptions: {
-    labelStyle: {
-      fontWeight: '500',
-      color: theme.COLORS.GREY,
-      fontSize: theme.SIZES.FONT * 0.875,
-      marginLeft: theme.SIZES.BASE * 0.75,
-    },
-    activeLabelStyle: {
-      color: theme.COLORS.WHITE,
-    },
-    activeBackgroundColor: theme.COLORS.THEME,
-    itemsContainerStyle: {
-      paddingVertical: 0,
-    },
-    iconContainerStyle: {
-      marginHorizontal: 0,
-      marginLeft: theme.SIZES.BASE * 1.65,
-      // marginRight: theme.SIZES.BASE * 0.76,
-    },
-  },
-};
-
-const GalioApp = createDrawerNavigator(screens, options);
+const GalioApp = createAppContainer(screens);
 
 export default GalioApp;
