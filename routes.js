@@ -138,7 +138,6 @@ const screens = createDrawerNavigator({
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
-  /*
   Dashboard: {
     screen: Dashboard,
     navigationOptions: {
@@ -146,7 +145,6 @@ const screens = createDrawerNavigator({
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
-  */
   News: {
     screen: News,
     navigationOptions: {
@@ -161,7 +159,6 @@ const screens = createDrawerNavigator({
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
-  /*
   Presentation: {
     screen: Presentation,
     navigationOptions: {
@@ -197,7 +194,6 @@ const screens = createDrawerNavigator({
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
-  */
 }, options);
 
 const GalioApp = createAppContainer(screens);
